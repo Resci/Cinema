@@ -12,7 +12,8 @@ public class Application {
     public static void main(String[] args) {
         Movie movie = new Movie();
         movie.setTitle("Duck Stories");
-        movieService.add(movie);
+        System.out.println("Before save: " + movie);
+        System.out.println("After save: " + movieService.add(movie));
 
         movieService.getAll().forEach(System.out::println);
     }
