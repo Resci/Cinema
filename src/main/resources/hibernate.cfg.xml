@@ -11,8 +11,10 @@
         <property name="hibernate.connection.pool_size">1</property>
         <property name="hibernate.show_sql">true</property>
         <property name="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</property>
-        <property name="hibernate.hbm2ddl.auto">update</property>
+        <property name="hibernate.hbm2ddl.auto">create-drop</property>
 
         <mapping class="com.mate.model.Movie" />
+        <mapping class="com.mate.model.MovieSession" />
+        <mapping class="com.mate.model.CinemaHall" />
     </session-factory>
 </hibernate-configuration>
