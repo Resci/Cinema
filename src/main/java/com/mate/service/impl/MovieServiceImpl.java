@@ -1,9 +1,10 @@
-package com.mate.service;
+package com.mate.service.impl;
 
 import com.mate.dao.MovieDao;
 import com.mate.lib.Inject;
 import com.mate.lib.Service;
 import com.mate.model.Movie;
+import com.mate.service.MovieService;
 import java.util.List;
 
 @Service
