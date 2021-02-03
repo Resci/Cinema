@@ -5,6 +5,7 @@ import com.mate.lib.Inject;
 import com.mate.lib.Service;
 import com.mate.model.User;
 import com.mate.service.AuthenticationService;
+import com.mate.service.ShoppingCartService;
 import com.mate.service.UserService;
 import com.mate.util.PasswordUtil;
 import java.util.Optional;
@@ -13,6 +14,8 @@ import java.util.Optional;
 public class AuthenticationServiceImpl implements AuthenticationService {
     @Inject
     private UserService userService;
+    @Inject
+    private ShoppingCartService shoppingCartService;
 
     @Override
     public User login(String email, String password) throws AuthenticationException {
@@ -29,6 +32,8 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         User user = new User();
         user.setEmail(email);
         user.setPassword(password);
-        return userService.add(user);
+        userService.add(user);
+        shoppingCartService.registerNewShoppingCart(user);
+        return user;
     }
 }
