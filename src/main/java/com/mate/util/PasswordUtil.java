@@ -20,6 +20,11 @@ public class PasswordUtil {
         return Base64.getEncoder().encodeToString(salt);
     }
 
+    public static String generateSecurePassword(String password, String salt) {
+        byte[] securePassword = hash(password.toCharArray(), salt.getBytes());
+        return Base64.getEncoder().encodeToString(securePassword);
+    }
+
     private static byte[] hash(char[] password, byte[] salt) {
         PBEKeySpec spec = new PBEKeySpec(password, salt, ITERATIONS, KEY_LENGTH);
         Arrays.fill(password, Character.MIN_VALUE);
@@ -31,10 +36,5 @@ public class PasswordUtil {
         } finally {
             spec.clearPassword();
         }
-    }
-
-    public static String generateSecurePassword(String password, String salt) {
-        byte[] securePassword = hash(password.toCharArray(), salt.getBytes());
-        return Base64.getEncoder().encodeToString(securePassword);
     }
 }
