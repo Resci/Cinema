@@ -5,7 +5,7 @@ import com.mate.lib.Inject;
 import com.mate.lib.Service;
 import com.mate.model.User;
 import com.mate.service.UserService;
-import com.mate.util.PasswordUtils;
+import com.mate.util.PasswordUtil;
 import java.util.Optional;
 
 @Service
@@ -16,8 +16,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User add(User user) {
-        String salt = PasswordUtils.getSalt(SALT_LENGTH);
-        String securePassword = PasswordUtils.generateSecurePassword(user.getPassword(), salt);
+        String salt = PasswordUtil.getSalt(SALT_LENGTH);
+        String securePassword = PasswordUtil.generateSecurePassword(user.getPassword(), salt);
         user.setPassword(securePassword);
         user.setSalt(salt);
         return userDao.add(user);

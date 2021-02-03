@@ -1,5 +1,6 @@
 package com.mate;
 
+import com.mate.exception.AuthenticationException;
 import com.mate.lib.Injector;
 import com.mate.model.CinemaHall;
 import com.mate.model.Movie;
@@ -44,7 +45,12 @@ public class Application {
                 .forEach(System.out::println);
 
         User user = authenticationService.register("sample@gmail.com", "123");
-        User authenticatedUser = authenticationService.login("sample@gmail.com", "123");
+        User authenticatedUser = null;
+        try {
+            authenticatedUser = authenticationService.login("sample@gmail.com", "123");
+        } catch (AuthenticationException e) {
+            System.out.println(e.getMessage());
+        }
         System.out.println(user);
         System.out.println(authenticatedUser);
     }

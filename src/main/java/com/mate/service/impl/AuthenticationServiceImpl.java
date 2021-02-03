@@ -6,7 +6,7 @@ import com.mate.lib.Service;
 import com.mate.model.User;
 import com.mate.service.AuthenticationService;
 import com.mate.service.UserService;
-import com.mate.util.PasswordUtils;
+import com.mate.util.PasswordUtil;
 import java.util.Optional;
 
 @Service
@@ -17,8 +17,8 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     @Override
     public User login(String email, String password) throws AuthenticationException {
         Optional<User> user = userService.findByEmail(email);
-        if (user.isPresent() && PasswordUtils.verifyUserPassword(
-                password, user.get().getPassword(), user.get().getSalt())) {
+        if (user.isPresent() && user.get().getPassword().equals(
+                PasswordUtil.generateSecurePassword(password, user.get().getSalt()))) {
             return user.get();
         }
         throw new AuthenticationException("Invalid login or password");
