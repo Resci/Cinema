@@ -4,6 +4,8 @@ import com.mate.lib.Injector;
 import com.mate.model.CinemaHall;
 import com.mate.model.Movie;
 import com.mate.model.MovieSession;
+import com.mate.model.User;
+import com.mate.service.AuthenticationService;
 import com.mate.service.CinemaHallService;
 import com.mate.service.MovieService;
 import com.mate.service.MovieSessionService;
@@ -18,6 +20,8 @@ public class Application {
             (MovieSessionService) injector.getInstance(MovieSessionService.class);
     private static final CinemaHallService cinemaHallService =
             (CinemaHallService) injector.getInstance(CinemaHallService.class);
+    private static final AuthenticationService authenticationService =
+            (AuthenticationService) injector.getInstance(AuthenticationService.class);
 
     public static void main(String[] args) {
         Movie movie = new Movie();
@@ -38,5 +42,10 @@ public class Application {
         movieSessionService.add(movieSession);
         movieSessionService.findAvailableSessions(movie.getId(), LocalDate.now())
                 .forEach(System.out::println);
+
+        User user = authenticationService.register("sample@gmail.com", "123");
+        User authenticatedUser = authenticationService.login("sample@gmail.com", "123");
+        System.out.println(user);
+        System.out.println(authenticatedUser);
     }
 }

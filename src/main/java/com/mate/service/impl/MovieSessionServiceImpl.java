@@ -1,9 +1,10 @@
-package com.mate.service;
+package com.mate.service.impl;
 
 import com.mate.dao.MovieSessionDao;
 import com.mate.lib.Inject;
 import com.mate.lib.Service;
 import com.mate.model.MovieSession;
+import com.mate.service.MovieSessionService;
 import java.time.LocalDate;
 import java.util.List;
 

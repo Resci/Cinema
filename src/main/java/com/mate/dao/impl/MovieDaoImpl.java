@@ -1,5 +1,6 @@
-package com.mate.dao;
+package com.mate.dao.impl;
 
+import com.mate.dao.MovieDao;
 import com.mate.exception.DataProcessingException;
 import com.mate.lib.Dao;
 import com.mate.model.Movie;
