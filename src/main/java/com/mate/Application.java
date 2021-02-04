@@ -5,11 +5,13 @@ import com.mate.lib.Injector;
 import com.mate.model.CinemaHall;
 import com.mate.model.Movie;
 import com.mate.model.MovieSession;
+import com.mate.model.ShoppingCart;
 import com.mate.model.User;
 import com.mate.service.AuthenticationService;
 import com.mate.service.CinemaHallService;
 import com.mate.service.MovieService;
 import com.mate.service.MovieSessionService;
+import com.mate.service.ShoppingCartService;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -23,6 +25,8 @@ public class Application {
             (CinemaHallService) injector.getInstance(CinemaHallService.class);
     private static final AuthenticationService authenticationService =
             (AuthenticationService) injector.getInstance(AuthenticationService.class);
+    private static final ShoppingCartService shoppingCartService =
+            (ShoppingCartService) injector.getInstance(ShoppingCartService.class);
 
     public static void main(String[] args) {
         Movie movie = new Movie();
@@ -53,5 +57,11 @@ public class Application {
         }
         System.out.println(user);
         System.out.println(authenticatedUser);
+
+        shoppingCartService.addSession(movieSession, user);
+        ShoppingCart shoppingCart = shoppingCartService.getByUser(user);
+        System.out.println(shoppingCart);
+        shoppingCartService.clear(shoppingCart);
+        System.out.println(shoppingCart);
     }
 }
