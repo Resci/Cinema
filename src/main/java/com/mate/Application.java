@@ -68,7 +68,7 @@ public class Application {
         System.out.println(shoppingCart);
         Order order = orderService.completeOrder(shoppingCart);
         System.out.println(shoppingCart);
-        System.err.println(order);
-        System.err.println(orderService.getOrdersHistory(user));
+        System.out.println(order);
+        System.out.println(orderService.getOrdersHistory(user));
     }
 }
