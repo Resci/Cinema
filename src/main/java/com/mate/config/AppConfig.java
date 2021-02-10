@@ -44,7 +44,7 @@ public class AppConfig {
         properties.put("hibernate.hbm2ddl.auto", env.getProperty("hibernate.hbm2ddl.auto"));
 
         factoryBean.setHibernateProperties(properties);
-        factoryBean.setAnnotatedPackages("com.mate.model");
+        factoryBean.setPackagesToScan("com.mate.model");
         return factoryBean;
     }
 }
