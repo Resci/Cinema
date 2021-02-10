@@ -2,23 +2,29 @@ package com.mate.dao.impl;
 
 import com.mate.dao.OrderDao;
 import com.mate.exception.DataProcessingException;
-import com.mate.lib.Dao;
 import com.mate.model.Order;
 import com.mate.model.User;
-import com.mate.util.HibernateUtil;
 import java.util.List;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
+import org.springframework.stereotype.Repository;
 
-@Dao
+@Repository
 public class OrderDaoImpl implements OrderDao {
+    private final SessionFactory factory;
+
+    public OrderDaoImpl(SessionFactory factory) {
+        this.factory = factory;
+    }
+
     @Override
     public Order add(Order order) {
         Transaction transaction = null;
         Session session = null;
         try {
-            session = HibernateUtil.getSessionFactory().openSession();
+            session = factory.openSession();
             transaction = session.beginTransaction();
             session.save(order);
             transaction.commit();
@@ -37,7 +43,7 @@ public class OrderDaoImpl implements OrderDao {
 
     @Override
     public List<Order> getOrdersHistory(User user) {
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+        try (Session session = factory.openSession()) {
             Query<Order> getByUser = session.createQuery(
                     "SELECT DISTINCT o FROM orders o "
                             + "join fetch o.tickets t "

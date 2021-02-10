@@ -2,20 +2,26 @@ package com.mate.dao.impl;
 
 import com.mate.dao.TicketDao;
 import com.mate.exception.DataProcessingException;
-import com.mate.lib.Dao;
 import com.mate.model.Ticket;
-import com.mate.util.HibernateUtil;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.springframework.stereotype.Repository;
 
-@Dao
+@Repository
 public class TicketDaoImpl implements TicketDao {
+    private final SessionFactory factory;
+
+    public TicketDaoImpl(SessionFactory factory) {
+        this.factory = factory;
+    }
+
     @Override
     public Ticket add(Ticket ticket) {
         Transaction transaction = null;
         Session session = null;
         try {
-            session = HibernateUtil.getSessionFactory().openSession();
+            session = factory.openSession();
             transaction = session.beginTransaction();
             session.save(ticket);
             transaction.commit();

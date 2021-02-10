@@ -2,22 +2,28 @@ package com.mate.dao.impl;
 
 import com.mate.dao.ShoppingCartDao;
 import com.mate.exception.DataProcessingException;
-import com.mate.lib.Dao;
 import com.mate.model.ShoppingCart;
 import com.mate.model.User;
-import com.mate.util.HibernateUtil;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
+import org.springframework.stereotype.Repository;
 
-@Dao
+@Repository
 public class ShoppingCartDaoImpl implements ShoppingCartDao {
+    private final SessionFactory factory;
+
+    public ShoppingCartDaoImpl(SessionFactory factory) {
+        this.factory = factory;
+    }
+
     @Override
     public ShoppingCart add(ShoppingCart shoppingCart) {
         Transaction transaction = null;
         Session session = null;
         try {
-            session = HibernateUtil.getSessionFactory().openSession();
+            session = factory.openSession();
             transaction = session.beginTransaction();
             session.save(shoppingCart);
             transaction.commit();
@@ -36,7 +42,7 @@ public class ShoppingCartDaoImpl implements ShoppingCartDao {
 
     @Override
     public ShoppingCart getByUser(User user) {
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+        try (Session session = factory.openSession()) {
             Query<ShoppingCart> getByUser = session.createQuery(
                     "SELECT DISTINCT sc FROM ShoppingCart sc "
                             + "left join fetch sc.tickets t "
@@ -56,7 +62,7 @@ public class ShoppingCartDaoImpl implements ShoppingCartDao {
         Transaction transaction = null;
         Session session = null;
         try {
-            session = HibernateUtil.getSessionFactory().openSession();
+            session = factory.openSession();
             transaction = session.beginTransaction();
             session.merge(shoppingCart);
             transaction.commit();
