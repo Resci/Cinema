@@ -1,8 +1,6 @@
 package com.mate.service.impl;
 
 import com.mate.dao.OrderDao;
-import com.mate.lib.Inject;
-import com.mate.lib.Service;
 import com.mate.model.Order;
 import com.mate.model.ShoppingCart;
 import com.mate.model.User;
@@ -10,13 +8,17 @@ import com.mate.service.OrderService;
 import com.mate.service.ShoppingCartService;
 import java.time.LocalDateTime;
 import java.util.List;
+import org.springframework.stereotype.Service;
 
 @Service
 public class OrderServiceImpl implements OrderService {
-    @Inject
-    private OrderDao orderDao;
-    @Inject
-    private ShoppingCartService shoppingCartService;
+    private final OrderDao orderDao;
+    private final ShoppingCartService shoppingCartService;
+
+    public OrderServiceImpl(OrderDao orderDao, ShoppingCartService shoppingCartService) {
+        this.orderDao = orderDao;
+        this.shoppingCartService = shoppingCartService;
+    }
 
     @Override
     public Order completeOrder(ShoppingCart shoppingCart) {

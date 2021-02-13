@@ -1,16 +1,18 @@
 package com.mate.service.impl;
 
 import com.mate.dao.MovieDao;
-import com.mate.lib.Inject;
-import com.mate.lib.Service;
 import com.mate.model.Movie;
 import com.mate.service.MovieService;
 import java.util.List;
+import org.springframework.stereotype.Service;
 
 @Service
 public class MovieServiceImpl implements MovieService {
-    @Inject
-    private MovieDao movieDao;
+    private final MovieDao movieDao;
+
+    public MovieServiceImpl(MovieDao movieDao) {
+        this.movieDao = movieDao;
+    }
 
     @Override
     public Movie add(Movie movie) {

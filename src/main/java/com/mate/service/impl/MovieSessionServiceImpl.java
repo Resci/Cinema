@@ -1,17 +1,19 @@
 package com.mate.service.impl;
 
 import com.mate.dao.MovieSessionDao;
-import com.mate.lib.Inject;
-import com.mate.lib.Service;
 import com.mate.model.MovieSession;
 import com.mate.service.MovieSessionService;
 import java.time.LocalDate;
 import java.util.List;
+import org.springframework.stereotype.Service;
 
 @Service
 public class MovieSessionServiceImpl implements MovieSessionService {
-    @Inject
-    private MovieSessionDao movieSessionDao;
+    private final MovieSessionDao movieSessionDao;
+
+    public MovieSessionServiceImpl(MovieSessionDao movieSessionDao) {
+        this.movieSessionDao = movieSessionDao;
+    }
 
     @Override
     public List<MovieSession> findAvailableSessions(Long movieId, LocalDate date) {

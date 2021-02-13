@@ -1,21 +1,24 @@
 package com.mate.service.impl;
 
 import com.mate.exception.AuthenticationException;
-import com.mate.lib.Inject;
-import com.mate.lib.Service;
 import com.mate.model.User;
 import com.mate.service.AuthenticationService;
 import com.mate.service.ShoppingCartService;
 import com.mate.service.UserService;
 import com.mate.util.PasswordUtil;
 import java.util.Optional;
+import org.springframework.stereotype.Service;
 
 @Service
 public class AuthenticationServiceImpl implements AuthenticationService {
-    @Inject
-    private UserService userService;
-    @Inject
-    private ShoppingCartService shoppingCartService;
+    private final UserService userService;
+    private final ShoppingCartService shoppingCartService;
+
+    public AuthenticationServiceImpl(UserService userService,
+                                     ShoppingCartService shoppingCartService) {
+        this.userService = userService;
+        this.shoppingCartService = shoppingCartService;
+    }
 
     @Override
     public User login(String email, String password) throws AuthenticationException {
