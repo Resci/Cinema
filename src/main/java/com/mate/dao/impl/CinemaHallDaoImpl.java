@@ -4,6 +4,7 @@ import com.mate.dao.CinemaHallDao;
 import com.mate.exception.DataProcessingException;
 import com.mate.model.CinemaHall;
 import java.util.List;
+import java.util.Optional;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -37,6 +38,17 @@ public class CinemaHallDaoImpl implements CinemaHallDao {
             if (session != null) {
                 session.close();
             }
+        }
+    }
+
+    @Override
+    public Optional<CinemaHall> get(Long id) {
+        try (Session session = factory.openSession()) {
+            return session.createQuery("FROM CinemaHall WHERE id = :id", CinemaHall.class)
+                    .setParameter("id", id)
+                    .uniqueResultOptional();
+        } catch (Exception e) {
+            throw new DataProcessingException("Can't get movie, id: " + id, e);
         }
     }
 
