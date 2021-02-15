@@ -1,4 +1,4 @@
-package com.mate.util.mapper;
+package com.mate.service.mapper;
 
 import com.mate.dto.CinemaHallRequestDto;
 import com.mate.dto.CinemaHallResponseDto;

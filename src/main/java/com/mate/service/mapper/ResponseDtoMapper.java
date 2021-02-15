@@ -1,4 +1,4 @@
-package com.mate.util.mapper;
+package com.mate.service.mapper;
 
 public interface ResponseDtoMapper<D, T> {
     D mapToDto(T t);

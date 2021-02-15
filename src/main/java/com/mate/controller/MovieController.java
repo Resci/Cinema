@@ -4,7 +4,7 @@ import com.mate.dto.MovieRequestDto;
 import com.mate.dto.MovieResponseDto;
 import com.mate.model.Movie;
 import com.mate.service.MovieService;
-import com.mate.util.mapper.MovieMapper;
+import com.mate.service.mapper.MovieMapper;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.springframework.web.bind.annotation.GetMapping;

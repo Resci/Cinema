@@ -4,7 +4,7 @@ import com.mate.dto.CinemaHallRequestDto;
 import com.mate.dto.CinemaHallResponseDto;
 import com.mate.model.CinemaHall;
 import com.mate.service.CinemaHallService;
-import com.mate.util.mapper.CinemaHallMapper;
+import com.mate.service.mapper.CinemaHallMapper;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.springframework.web.bind.annotation.GetMapping;

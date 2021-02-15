@@ -1,4 +1,4 @@
-package com.mate.util.mapper;
+package com.mate.service.mapper;
 
 import com.mate.dto.MovieSessionRequestDto;
 import com.mate.dto.MovieSessionResponseDto;

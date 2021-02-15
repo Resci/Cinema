@@ -4,7 +4,7 @@ import com.mate.dto.MovieSessionRequestDto;
 import com.mate.dto.MovieSessionResponseDto;
 import com.mate.model.MovieSession;
 import com.mate.service.MovieSessionService;
-import com.mate.util.mapper.MovieSessionMapper;
+import com.mate.service.mapper.MovieSessionMapper;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -34,8 +34,8 @@ public class MovieSessionController {
 
     @PostMapping
     public MovieSessionResponseDto add(@RequestBody MovieSessionRequestDto requestDto) {
-        MovieSession movieSession;
-        movieSession = movieSessionService.add(movieSessionMapper.mapToObj(requestDto));
+        MovieSession movieSession = movieSessionMapper.mapToObj(requestDto);
+        movieSessionService.add(movieSession);
         return movieSessionMapper.mapToDto(movieSession);
     }
 
@@ -60,12 +60,7 @@ public class MovieSessionController {
     }
 
     @DeleteMapping("/{id}")
-    public String delete(@PathVariable Long id) {
-        try {
-            movieSessionService.delete(id);
-        } catch (Exception e) {
-            return e.getMessage();
-        }
-        return "Movie session with id " + id + " deleted successful";
+    public void delete(@PathVariable Long id) {
+        movieSessionService.delete(id);
     }
 }
