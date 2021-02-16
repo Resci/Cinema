@@ -50,7 +50,7 @@ public class MovieSessionDaoImpl implements MovieSessionDao {
                     .setParameter("id", id)
                     .uniqueResultOptional();
         } catch (Exception e) {
-            throw new DataProcessingException("Session with id " + id + " not found", e);
+            throw new DataProcessingException("Movie session with id " + id + " not found", e);
         }
     }
 
