@@ -1,4 +1,4 @@
-package com.mate.dto;
+package com.mate.dto.request;
 
 public class CinemaHallRequestDto {
     private int capacity;

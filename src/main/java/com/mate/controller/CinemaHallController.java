@@ -1,7 +1,7 @@
 package com.mate.controller;
 
-import com.mate.dto.CinemaHallRequestDto;
-import com.mate.dto.CinemaHallResponseDto;
+import com.mate.dto.request.CinemaHallRequestDto;
+import com.mate.dto.response.CinemaHallResponseDto;
 import com.mate.model.CinemaHall;
 import com.mate.service.CinemaHallService;
 import com.mate.service.mapper.CinemaHallMapper;

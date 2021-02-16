@@ -1,10 +1,11 @@
 package com.mate.controller;
 
-import com.mate.dto.MovieSessionRequestDto;
-import com.mate.dto.MovieSessionResponseDto;
+import com.mate.dto.request.MovieSessionRequestDto;
+import com.mate.dto.response.MovieSessionResponseDto;
 import com.mate.model.MovieSession;
 import com.mate.service.MovieSessionService;
 import com.mate.service.mapper.MovieSessionMapper;
+import com.mate.util.DateTimePatternUtil;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -22,7 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/movie-sessions")
 public class MovieSessionController {
-    public static final String DATE_PATTERN = "dd.MM.yyyy";
+    public static final String DATE_PATTERN = DateTimePatternUtil.DATE_PATTERN;
     private final MovieSessionService movieSessionService;
     private final MovieSessionMapper movieSessionMapper;
 

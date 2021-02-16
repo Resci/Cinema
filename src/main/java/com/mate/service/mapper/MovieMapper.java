@@ -1,7 +1,7 @@
 package com.mate.service.mapper;
 
-import com.mate.dto.MovieRequestDto;
-import com.mate.dto.MovieResponseDto;
+import com.mate.dto.request.MovieRequestDto;
+import com.mate.dto.response.MovieResponseDto;
 import com.mate.model.Movie;
 import org.springframework.stereotype.Component;
 

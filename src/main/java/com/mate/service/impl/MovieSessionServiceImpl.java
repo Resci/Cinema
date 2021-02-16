@@ -1,6 +1,7 @@
 package com.mate.service.impl;
 
 import com.mate.dao.MovieSessionDao;
+import com.mate.exception.DataProcessingException;
 import com.mate.model.MovieSession;
 import com.mate.service.MovieSessionService;
 import java.time.LocalDate;
@@ -23,6 +24,12 @@ public class MovieSessionServiceImpl implements MovieSessionService {
     @Override
     public MovieSession add(MovieSession session) {
         return movieSessionDao.add(session);
+    }
+
+    @Override
+    public MovieSession get(Long id) {
+        return movieSessionDao.get(id).orElseThrow(
+                () -> new DataProcessingException("Session with id " + id + " not found"));
     }
 
     @Override
