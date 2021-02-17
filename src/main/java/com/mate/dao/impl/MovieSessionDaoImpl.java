@@ -5,6 +5,7 @@ import com.mate.exception.DataProcessingException;
 import com.mate.model.MovieSession;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -38,6 +39,18 @@ public class MovieSessionDaoImpl implements MovieSessionDao {
             if (session != null) {
                 session.close();
             }
+        }
+    }
+
+    @Override
+    public Optional<MovieSession> get(Long id) {
+        try (Session session = factory.openSession()) {
+            return session.createQuery(
+                    "FROM MovieSession WHERE id = :id ", MovieSession.class)
+                    .setParameter("id", id)
+                    .uniqueResultOptional();
+        } catch (Exception e) {
+            throw new DataProcessingException("Movie session with id " + id + " not found", e);
         }
     }
 

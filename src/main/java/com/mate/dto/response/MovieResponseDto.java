@@ -1,4 +1,4 @@
-package com.mate.dto;
+package com.mate.dto.response;
 
 public class MovieResponseDto {
     private Long movieId;

@@ -1,6 +1,7 @@
 package com.mate.service.impl;
 
 import com.mate.dao.UserDao;
+import com.mate.exception.DataProcessingException;
 import com.mate.model.User;
 import com.mate.service.UserService;
 import com.mate.util.PasswordUtil;
@@ -23,6 +24,12 @@ public class UserServiceImpl implements UserService {
         user.setPassword(securePassword);
         user.setSalt(salt);
         return userDao.add(user);
+    }
+
+    @Override
+    public User get(Long id) {
+        return userDao.get(id).orElseThrow(
+                () -> new DataProcessingException("User with id " + id + " not found"));
     }
 
     @Override

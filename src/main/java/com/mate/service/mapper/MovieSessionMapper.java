@@ -1,10 +1,11 @@
 package com.mate.service.mapper;
 
-import com.mate.dto.MovieSessionRequestDto;
-import com.mate.dto.MovieSessionResponseDto;
+import com.mate.dto.request.MovieSessionRequestDto;
+import com.mate.dto.response.MovieSessionResponseDto;
 import com.mate.model.MovieSession;
 import com.mate.service.CinemaHallService;
 import com.mate.service.MovieService;
+import com.mate.util.DateTimePatternUtil;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import org.springframework.stereotype.Component;
@@ -12,7 +13,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class MovieSessionMapper implements RequestDtoMapper<MovieSessionRequestDto, MovieSession>,
         ResponseDtoMapper<MovieSessionResponseDto, MovieSession> {
-    private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm");
+    private final DateTimeFormatter formatter =
+            DateTimeFormatter.ofPattern(DateTimePatternUtil.DATE_TIME_PATTERN);
     private final CinemaHallService cinemaHallService;
     private final MovieService movieService;
 

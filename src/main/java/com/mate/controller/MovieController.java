@@ -1,7 +1,7 @@
 package com.mate.controller;
 
-import com.mate.dto.MovieRequestDto;
-import com.mate.dto.MovieResponseDto;
+import com.mate.dto.request.MovieRequestDto;
+import com.mate.dto.response.MovieResponseDto;
 import com.mate.model.Movie;
 import com.mate.service.MovieService;
 import com.mate.service.mapper.MovieMapper;

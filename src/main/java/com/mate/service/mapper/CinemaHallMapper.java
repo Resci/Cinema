@@ -1,7 +1,7 @@
 package com.mate.service.mapper;
 
-import com.mate.dto.CinemaHallRequestDto;
-import com.mate.dto.CinemaHallResponseDto;
+import com.mate.dto.request.CinemaHallRequestDto;
+import com.mate.dto.response.CinemaHallResponseDto;
 import com.mate.model.CinemaHall;
 import org.springframework.stereotype.Component;
 
