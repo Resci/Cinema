@@ -4,12 +4,15 @@ import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
 public class EmailValidator implements ConstraintValidator<ValidEmail, String> {
+
+    public static final String EMAIL_VALIDATION_REGEX = "^(.+)@(.+)$";
+
     @Override
     public void initialize(ValidEmail constraintAnnotation) {
     }
 
     @Override
     public boolean isValid(String field, ConstraintValidatorContext context) {
-        return field.matches("^(.+)@(.+)$");
+        return field.matches(EMAIL_VALIDATION_REGEX);
     }
 }
