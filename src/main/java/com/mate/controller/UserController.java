@@ -1,7 +1,6 @@
 package com.mate.controller;
 
 import com.mate.dto.response.UserResponseDto;
-import com.mate.exception.DataProcessingException;
 import com.mate.model.User;
 import com.mate.service.UserService;
 import com.mate.service.mapper.UserMapper;
@@ -23,8 +22,7 @@ public class UserController {
 
     @GetMapping("/by-email")
     public UserResponseDto getByEmail(@RequestParam String email) {
-        User user = userService.findByEmail(email).orElseThrow(
-                () -> new DataProcessingException("Invalid email"));
+        User user = userService.findByEmail(email);
         return userMapper.mapToDto(user);
     }
 }
