@@ -2,18 +2,23 @@ package com.mate.service.impl;
 
 import com.mate.model.User;
 import com.mate.service.AuthenticationService;
+import com.mate.service.RoleService;
 import com.mate.service.ShoppingCartService;
 import com.mate.service.UserService;
+import java.util.List;
 import org.springframework.stereotype.Service;
 
 @Service
 public class AuthenticationServiceImpl implements AuthenticationService {
     private final UserService userService;
+    private final RoleService roleService;
     private final ShoppingCartService shoppingCartService;
 
     public AuthenticationServiceImpl(UserService userService,
+                                     RoleService roleService,
                                      ShoppingCartService shoppingCartService) {
         this.userService = userService;
+        this.roleService = roleService;
         this.shoppingCartService = shoppingCartService;
     }
 
@@ -22,6 +27,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         User user = new User();
         user.setEmail(email);
         user.setPassword(password);
+        user.setRoles(List.of(roleService.getByName("user")));
         userService.add(user);
         shoppingCartService.registerNewShoppingCart(user);
         return user;

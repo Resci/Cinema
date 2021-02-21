@@ -7,7 +7,6 @@ import java.util.Optional;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -43,10 +42,10 @@ public class UserDaoImpl implements UserDao {
     @Override
     public Optional<User> get(Long id) {
         try (Session session = factory.openSession()) {
-            Query<User> findByEmail = session.createQuery(
-                    "FROM User WHERE id = :id", User.class);
-            findByEmail.setParameter("id", id);
-            return findByEmail.uniqueResultOptional();
+            return session.createQuery(
+                    "FROM User u JOIN FETCH u.roles WHERE u.id = :id", User.class)
+                    .setParameter("id", id)
+                    .uniqueResultOptional();
         } catch (Exception e) {
             throw new DataProcessingException("User with id " + id + " not found", e);
         }
@@ -55,10 +54,10 @@ public class UserDaoImpl implements UserDao {
     @Override
     public Optional<User> findByEmail(String email) {
         try (Session session = factory.openSession()) {
-            Query<User> findByEmail = session.createQuery(
-                    "FROM User WHERE email = :email", User.class);
-            findByEmail.setParameter("email", email);
-            return findByEmail.uniqueResultOptional();
+            return session.createQuery(
+                    "FROM User u JOIN FETCH u.roles WHERE u.email = :email", User.class)
+                    .setParameter("email", email)
+                    .uniqueResultOptional();
         } catch (Exception e) {
             throw new DataProcessingException("User with email " + email + " not found", e);
         }
