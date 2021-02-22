@@ -2,7 +2,7 @@ package com.mate.service;
 
 import com.mate.model.Role;
 import com.mate.model.User;
-import java.util.List;
+import java.util.Set;
 import javax.annotation.PostConstruct;
 import org.springframework.stereotype.Component;
 
@@ -27,7 +27,7 @@ public class InjectData {
         User user = new User();
         user.setEmail("admin@i.ua");
         user.setPassword("admin123");
-        user.setRoles(List.of(adminRole));
+        user.setRoles(Set.of(adminRole));
         userService.add(user);
     }
 }

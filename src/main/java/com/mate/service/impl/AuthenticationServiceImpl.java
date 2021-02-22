@@ -5,7 +5,7 @@ import com.mate.service.AuthenticationService;
 import com.mate.service.RoleService;
 import com.mate.service.ShoppingCartService;
 import com.mate.service.UserService;
-import java.util.List;
+import java.util.Set;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -27,7 +27,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         User user = new User();
         user.setEmail(email);
         user.setPassword(password);
-        user.setRoles(List.of(roleService.getByName("USER")));
+        user.setRoles(Set.of(roleService.getByName("USER")));
         userService.add(user);
         shoppingCartService.registerNewShoppingCart(user);
         return user;

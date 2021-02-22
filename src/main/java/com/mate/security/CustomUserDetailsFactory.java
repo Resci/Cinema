@@ -3,6 +3,7 @@ package com.mate.security;
 import com.mate.model.Role;
 import com.mate.model.User;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -19,7 +20,7 @@ public class CustomUserDetailsFactory implements UserDetailsFactory {
                 mapToGrantedAuthorities(user.getRoles()));
     }
 
-    private List<GrantedAuthority> mapToGrantedAuthorities(List<Role> roles) {
+    private List<GrantedAuthority> mapToGrantedAuthorities(Set<Role> roles) {
         return roles.stream()
                 .map(role -> new SimpleGrantedAuthority(role.getName()))
                 .collect(Collectors.toList());
