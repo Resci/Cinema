@@ -19,9 +19,9 @@ public class CustomUserDetailsService implements UserDetailsService {
     }
 
     @Override
-    public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         try {
-            return userDetailsFactory.create(userService.findByEmail(s));
+            return userDetailsFactory.create(userService.findByEmail(email));
         } catch (DateTimeParseException e) {
             throw new UsernameNotFoundException(e.getMessage());
         }

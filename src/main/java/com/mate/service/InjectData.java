@@ -19,10 +19,10 @@ public class InjectData {
     @PostConstruct
     public void inject() {
         Role adminRole = new Role();
-        adminRole.setName("admin");
+        adminRole.setName("ADMIN");
         roleService.add(adminRole);
         Role userRole = new Role();
-        userRole.setName("user");
+        userRole.setName("USER");
         roleService.add(userRole);
         User user = new User();
         user.setEmail("admin@i.ua");
