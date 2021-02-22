@@ -48,7 +48,7 @@ public class RoleDaoImpl implements RoleDao {
                     .setParameter("name", name)
                     .uniqueResultOptional();
         } catch (Exception e) {
-            throw new DataProcessingException("User with name " + name + " not found", e);
+            throw new DataProcessingException("Role with roleName " + name + " not found", e);
         }
     }
 }
